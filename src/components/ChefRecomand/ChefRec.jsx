@@ -39,7 +39,7 @@ const ChefRec = () => {
             </p>
           </div>
           <button className="btn btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-blue-600">
-            Learn More
+            ADD TO CATT
           </button>
         </div>
       ))}

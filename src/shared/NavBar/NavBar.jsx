@@ -1,5 +1,7 @@
 import React from 'react';
 import { IoFastFoodSharp } from 'react-icons/io5';
+import { GiPalmTree } from "react-icons/gi";
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     const links=<>
@@ -23,7 +25,17 @@ const NavBar = () => {
        {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl"><span><IoFastFoodSharp /></span> Forest</a>
+    
+    <NavLink
+  to="/"
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className="btn btn-ghost text-xl"
+>
+  <span className="text-amber-500"><IoFastFoodSharp /></span>
+  Forest
+  <span className="text-green-600"><GiPalmTree /></span>
+</NavLink>
+
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
