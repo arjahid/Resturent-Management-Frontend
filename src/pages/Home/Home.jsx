@@ -7,15 +7,26 @@ import PropularMenu from './PropularMenu/PropularMenu';
 import ChefRec from '../../components/ChefRecomand/ChefRec';
 import Featured from './Featured/Featured';
 import Testomonial from './Testomial/Testomonial';
+import Callus from './CallUS/Callus';
+import { Helmet } from 'react-helmet-async';
+
+
+
+
 
 const Home = () => {
     return (
         <div>
+           <Helmet>
+        <title>Home</title>
+       
+      </Helmet>
            <Banner></Banner>
            <Sort></Sort>
            <Category></Category>
            <Resinfo></Resinfo>
            <PropularMenu></PropularMenu>
+           <Callus></Callus>
            <ChefRec></ChefRec>
            <Featured></Featured>
            <Testomonial></Testomonial>

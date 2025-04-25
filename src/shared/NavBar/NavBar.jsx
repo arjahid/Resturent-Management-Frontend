@@ -1,22 +1,22 @@
 import React from "react";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { GiPalmTree } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const links = (
     <>
       <li>
-        <a>Home</a>
+        <Link to='/'>Home</Link>
       </li>
       <li>
-        <a>Contract Us</a>
+        <Link to='/order/salad'>Order Food</Link>
       </li>
       <li>
         <a>Dasboard</a>
       </li>
       <li>
-        <a>Our Menu</a>
+        <Link to='/menu'>Our Menu</Link>
       </li>
       <li>
         <a>Our Shop</a>

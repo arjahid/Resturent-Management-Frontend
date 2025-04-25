@@ -4,12 +4,13 @@ import img from '../../assets/home/chef-service.jpg';
 const Resinfo = () => {
   return (
     <div
-      className="hero"
+      className="hero bg-fixed "
       style={{
         backgroundImage: `url(${img})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
+      
     >
       <div className="hero-overlay bg-black bg-opacity-50">
         
@@ -22,7 +23,7 @@ const Resinfo = () => {
           <p className="mb-6 sm:mb-8 text-base sm:text-lg md:text-xl text-gray-300">
             Experience the finest dining in a serene forest ambiance. Enjoy our exquisite menu crafted with care and passion.
           </p>
-          <button className="btn btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-blue-600">
+          <button className="btn  btn-primary px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-lg font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-blue-600">
             Explore Menu
           </button>
         </div>
