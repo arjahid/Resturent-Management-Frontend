@@ -5,7 +5,7 @@ const Cover = ({ img, tittle }) => {
     const defaultImage = 'path/to/default/image.jpg'; // Replace with the actual path to a default image
     return (
         <Parallax
-            blur={{ min: -50, max: 5 }}
+            blur={{ min: -50, max: 50 }}
             bgImage={img || defaultImage}
             bgImageAlt="cover image"
             strength={-200}
