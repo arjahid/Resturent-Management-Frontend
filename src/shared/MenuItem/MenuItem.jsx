@@ -3,7 +3,7 @@ import React from 'react';
 const MenuItem = ({ item }) => {
     const { name, recipe, image, price } = item;
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <div className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ">
             <div className="flex justify-between items-center mb-4">
                 <div className="flex gap-4">
                     <img src={image} alt={name} className="w-16 h-16 rounded-full border-2 border-gray-300" />

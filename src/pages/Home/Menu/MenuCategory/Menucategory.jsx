@@ -3,8 +3,9 @@ import MenuItem from '../../../../shared/MenuItem/MenuItem';
 
 const Menucategory = ({items}) => {
     return (
-        <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className='w-10/12 sm:w-10/12 lg:w-full mx-auto my-8'>
+            
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-16">
                 {
                     items.map(item => (
                         <div 
