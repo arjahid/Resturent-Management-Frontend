@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Cover from "../../../shared/Cover/Cover";
 import menuImage from '../../../assets/menu/banner3.jpg';
 import useMenu from "../../../Hooks/useMenu";
+import Menucategory from "./MenuCategory/Menucategory";
 
 
 const Menu = () => {
@@ -30,7 +31,7 @@ const Menu = () => {
           </h2>
           <div className="my-4 mx-auto w-3/4 sm:w-1/2 border-b-2 border-white"></div>
         </div>
-      
+      <Menucategory items={offer}></Menucategory>
     
     </div>
   );
