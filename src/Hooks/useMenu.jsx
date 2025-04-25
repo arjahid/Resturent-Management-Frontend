@@ -6,7 +6,7 @@ const useMenu =()=>{
       const [loading,setLoading]=useState(true);
     
         useEffect(() => {
-            fetch('Menu.json')
+            fetch('http://localhost:3000/menu')
             .then(res => res.json())
             .then(data => {
                 // const populaarItem = data.filter(item => item.category === 'popular');

@@ -7,6 +7,8 @@ import Menucategory from "./MenuCategory/Menucategory";
 import desertImage from '../../../assets/menu/dessert-bg.jpeg'
 import pizzaImage from '../../../assets/menu/pizza-bg.jpg'
 import saladImage from '../../../assets/menu/salad-bg.jpg'
+import soupImage from '../../../assets/menu/soup-bg.jpg'
+
 
 
 const Menu = () => {
@@ -34,12 +36,12 @@ const Menu = () => {
       </div>
       {/* offer item */}
       <Menucategory items={offer} />
-      <Cover img={desertImage} tittle="Desert" />
+      <Cover img={desertImage} tittle="desert" />
       {/* desert item */}
       <Menucategory items={desert} />
       {/* pizza */}
       
-        <Cover img={pizzaImage} tittle="Pizza" />
+        <Cover img={pizzaImage} tittle="pizza" />
       <Menucategory
       items={pizza}
       title="Pizza"
@@ -47,12 +49,19 @@ const Menu = () => {
 
       </Menucategory>
       {/* salad */}
-        <Cover img={saladImage} tittle="Salad" />
+        <Cover img={saladImage} tittle="salad" />
         <Menucategory
         items={salad}
         title="Salad"
         ></Menucategory>
+        {/* soup */}
 
+        <Cover img={soupImage} tittle="soup" />
+        <Menucategory
+        items={soup}
+        title="soup"
+        ></Menucategory>
+        {/* dinks */}
     </div>
   );
 };
