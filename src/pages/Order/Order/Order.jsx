@@ -4,9 +4,17 @@ import coverImage from "../../../assets/shop/banner2.jpg";
 import Cover from "../../../shared/Cover/Cover"; // Import the Cover component
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useMenu from "../../../Hooks/useMenu";
+import FoodCard from "../FoodCard/FoodCard";
 
 const Order = () => {
     const [tabindex,setTabindex]=useState(0)
+    const [menu]=useMenu();
+    const desert = menu.filter((item) => item.category === "dessert");
+    const salad = menu.filter((item) => item.category === "salad");
+    const pizza = menu.filter((item) => item.category === "pizza");
+    const soup = menu.filter((item) => item.category === "soup");
+    const offer = menu.filter((item) => item.category === "offered");
   return (
     <div>
       <Helmet>
@@ -21,7 +29,16 @@ const Order = () => {
           <Tab>Desert</Tab>
           <Tab>Drinks</Tab>
         </TabList>
-        <TabPanel></TabPanel>
+        <TabPanel>
+            <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-2 my-16">
+            {
+                salad.map(item => <FoodCard
+                key={item._id}
+                item={item}
+                ></FoodCard>)
+            }
+            </div>
+        </TabPanel>
         <TabPanel></TabPanel>
         <TabPanel></TabPanel>
         <TabPanel></TabPanel>
