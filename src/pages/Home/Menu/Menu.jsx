@@ -36,9 +36,10 @@ const Menu = () => {
       </div>
       {/* offer item */}
       <Menucategory items={offer} />
-      <Cover img={desertImage} tittle="desert" />
       {/* desert item */}
-      <Menucategory items={desert} />
+      <Cover img={desertImage} tittle="desert" />
+      
+      <Menucategory items={desert} title='desert' />
       {/* pizza */}
       
         <Cover img={pizzaImage} tittle="pizza" />
