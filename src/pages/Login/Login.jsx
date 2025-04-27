@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
+    const captchaRef=useRef(null);
+
+    useEffect(()=>{
+        loadCaptchaEnginge(6); 
+    },[])
     const hanndleLogin =(e)=>{
         
         e.preventDefault();
@@ -8,6 +14,10 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value
         console.log(email, password);
+    }
+    const validateCaptcha=()=>{
+        const value=captchaRef.current.value;
+        console.log(value);
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -26,7 +36,12 @@ const Login = () => {
                 <input type="email" name='email' className="input" placeholder="Email" />
                 <label className="label">Password</label>
                 <input type="password" name='password' className="input" placeholder="Password" />
-                <div><a className="link link-hover">Forgot password?</a></div>
+                <div>
+                <label className="label">Captch</label>
+                    <LoadCanvasTemplate />
+                    <input type="text" ref={captchaRef} name='captcha' className="input" placeholder="Type the captcha above" />
+                    <button onClick={validateCaptcha} className='btn btn-outline btn-xs mt-2'>validate</button>
+                    </div>
                 <input className='btn btn-neutral' type="submit" value='Login' />
                 
               </form>
