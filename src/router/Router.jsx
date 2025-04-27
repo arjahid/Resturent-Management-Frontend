@@ -8,6 +8,7 @@ import MainLayouts from '../layouts/MainLayouts'
 import Home from '../pages/Home/Home'
 import Menu from '../pages/Home/Menu/Menu'
 import Order from '../pages/Order/Order/Order'
+import Login from '../pages/Login/Login'
 export const router = createBrowserRouter([
     {
       path: '/',
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
         {
           path:'/order/:category',
           element:<Order></Order>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
         }
         
       ]
