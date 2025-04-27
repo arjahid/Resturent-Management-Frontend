@@ -11,7 +11,7 @@ const Cover = ({ img, tittle }) => {
             strength={-200}
             className="custom-parallax-class " // Add your custom class here
         >
-            <div className="hero h-[300px] sm:min-h-[400px] md:min-h-[600px] lg:min-h-[700px] bg-cover bg-center bg-no-repeat bg-fixed">
+            <div className="hero h-[300px] sm:min-h-[400px] md:min-h-[600px] lg:min-h-[700px] bg-cover bg-center bg-no-repeat bg-fixed ">
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-neutral-content text-center px-4 sm:px-8">
                     <div className="max-w-md mx-auto">

@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 const Testomonial = () => {
   const [reviews, setReviews] = useState([]);
   useState(() => {
-    fetch("review.json")
+    fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

@@ -27,11 +27,12 @@ const Order = () => {
     
     const drinks = menu.filter((item) => item.category === "drinks");
   return (
-    <div>
+    <div className="mb-6 ">
       <Helmet>
         <title>Forest | Order</title>
       </Helmet>
       <Cover img={coverImage} tittle="Order Food" />
+      <div className=" mt-4">
       <Tabs defaultIndex={tabindex} onSelect={(index) => setTabindex(index)}>
         <TabList>
           <Tab>Salad</Tab>
@@ -56,6 +57,7 @@ const Order = () => {
             <OrderTab items={drinks}></OrderTab>
         </TabPanel>
       </Tabs>
+      </div>
     </div>
   );
 };
