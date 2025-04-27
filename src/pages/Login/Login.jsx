@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
+    const [disabled,setDisabled]=useState(true);
     const captchaRef=useRef(null);
 
     useEffect(()=>{
@@ -17,6 +18,12 @@ const Login = () => {
     }
     const validateCaptcha=()=>{
         const value=captchaRef.current.value;
+        if(validateCaptcha(value)){
+setDisabled(false);
+        }else{
+setDisabled(true);
+        }
+
         console.log(value);
     }
     return (
@@ -42,7 +49,7 @@ const Login = () => {
                     <input type="text" ref={captchaRef} name='captcha' className="input" placeholder="Type the captcha above" />
                     <button onClick={validateCaptcha} className='btn btn-outline btn-xs mt-2'>validate</button>
                     </div>
-                <input className='btn btn-neutral' type="submit" value='Login' />
+                <input disabled={disabled} className='btn btn-neutral' type="submit" value='Login' />
                 
               </form>
             </div>
