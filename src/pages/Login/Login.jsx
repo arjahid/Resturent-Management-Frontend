@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
+
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   
@@ -62,17 +63,17 @@ const Login = () => {
     <Helmet>
             <title>Forest || Login</title>
        </Helmet>
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen"> 
+      <div>
+        <img src="" alt="" />
+      </div>
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-        </div>
+        
         <div className="card bg-base-100 w-full max-w-sm  shadow-2xl">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold pl-4">Login now!</h1>
+        
+        </div>
           <div className="card-body">
             <form onSubmit={hanndleLogin} className="fieldset">
               <label className="label">Email</label>
@@ -114,7 +115,7 @@ const Login = () => {
                 value="Login"
               />
             </form>
-            <p><small>New Here?<Link to='/signup'> create an accoutn</Link></small></p>
+            <p><small>New Here?<Link to='/signup' className="text-green-600"> create an accoutn</Link></small></p>
           </div>
         </div>
       </div>

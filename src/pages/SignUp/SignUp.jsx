@@ -2,28 +2,50 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-    const {createUser}=useContext(AuthContext)
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = data => {
-    createUser(data.email, data.password)
-        .then((result) => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            alert("User Created Successfully");
-        })
-        .catch((error) => {
-            console.error("Error:", error.message); // Improved error logging
-        });
-};
+    const navigate=useNavigate();
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors },
+    } = useForm();
 
-  return (
+    const onSubmit = data => {
+        console.log("Form Data:", data); // Log the form data to the console
+        createUser(data.email, data.password)
+            .then((result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                alert("User Created Successfully");
+                updateUserProfile(data.name, data.photourl)
+                    .then(() => {
+                        console.log("User profile updated successfully");
+                        reset();
+                        Swal.fire({
+                            title: "User created successfully!",
+                            icon: "success",
+                            draggable: true
+                          });
+                        navigate("/");
+                    })
+                    .catch((error) => {
+                        console.error("Error updating user profile:", error.message);
+                    });
+            })
+            .catch((error) => {
+                console.error("Error:", error.message);
+            });
+    };
+
+    // watch input value by passing the name of it
+
+    return (
    <>
    <Helmet>
         <title>Forest || SignUp</title>
@@ -51,6 +73,18 @@ const SignUp = () => {
                 />
                 {errors.name && (
                   <span className="text-red-600">This field is required</span>
+                )}
+              </div>
+              <div>
+                <label className="label">Photo URL</label>
+                <input
+                  type="text"
+                  {...register("photourl", { required: true })}
+                  className="input"
+                  placeholder="Enter your photo URL"
+                />
+                {errors.photourl && (
+                  <span className="text-red-600">Photo URL is required</span>
                 )}
               </div>
 
@@ -90,6 +124,7 @@ const SignUp = () => {
             <input type="submit" className="btn btn-neutral mt-4" value="SignUp" />
               
             </form>
+            <p>Already Have an accoutnt?<Link to='/login' className="text-green-700" >Login</Link></p>
 
           </div>
         </div>
