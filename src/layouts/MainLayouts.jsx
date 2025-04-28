@@ -5,7 +5,7 @@ import NavBar from "../shared/NavBar/NavBar";
 
 const MainLayouts = () => {
   const loactaion = useLocation();
-  const noHeaderFooter = loactaion.pathname.includes("login")||loactaion.pathname.includes("login");
+  const noHeaderFooter = loactaion.pathname.includes("login")||loactaion.pathname.includes("signup");
 
   return (
     <div>

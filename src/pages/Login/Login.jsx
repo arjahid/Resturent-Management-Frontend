@@ -7,12 +7,13 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
 
-  const {signin}=useContext(AuthContext)
+  const {signIn}=useContext(AuthContext)
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -23,28 +24,34 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    signin(email,password)
+    signIn(email,password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        alert("User Login Successfully");
       })
       .catch((error) => {
         console.log(error.message);
       });
     form.reset();
   };
-  const handleCaptchaValidation = () => {
+  const handleCaptchaValidation = (e) => {
+    e.preventDefault();
     const value = captchaRef.current.value;
     if (validateCaptcha(value)) {
       setDisabled(false);
+      alert("Captcha matched! You can now click Login.");
     } else {
       setDisabled(true);
       alert("Captcha is not matched");
     }
-
-    console.log(value);
   };
   return (
+    
+   <>
+    <Helmet>
+            <title>Forest || Login</title>
+       </Helmet>
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
@@ -90,6 +97,7 @@ const Login = () => {
                 </button>
               </div>
               <input
+              
                 disabled={disabled}
                 className="btn btn-neutral"
                 type="submit"
@@ -101,6 +109,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 
