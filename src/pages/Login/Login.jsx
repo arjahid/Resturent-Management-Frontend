@@ -6,12 +6,14 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
+  const navigate=useNavigate();
 
   const {signIn}=useContext(AuthContext)
 
@@ -28,7 +30,12 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        alert("User Login Successfully");
+        Swal.fire({
+          title: "User Login Successfully!",
+          icon: "success",
+          draggable: true
+        });
+        navigate('/')
       })
       .catch((error) => {
         console.log(error.message);
