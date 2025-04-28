@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { GiPalmTree } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const NavBar = () => {
+  const {user,logout}=useContext(AuthContext)
+  const handleLogout = () => {
+    logout()
+      .then(() => {
+        console.log("User logged out successfully");
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  }
   const links = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/order/salad'>Order Food</Link>
+        <Link to="/order/salad">Order Food</Link>
       </li>
       <li>
         <a>Dasboard</a>
       </li>
       <li>
-        <Link to='/menu'>Our Menu</Link>
+        <Link to="/menu">Our Menu</Link>
       </li>
-      <li>
-        <Link to='/login'>Login</Link>
-      </li>
+      
       <li>
         <a>Our Shop</a>
       </li>
+      {
+        user ? <>
+        <button onClick={handleLogout} className="btn btn-ghost">LogOUt</button>
+        </> :
+        
+        <><li>
+        <Link to="/login">Login</Link>
+      </li> </>
+      }
     </>
   );
   return (
