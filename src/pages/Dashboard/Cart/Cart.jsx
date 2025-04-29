@@ -2,10 +2,12 @@ import React from "react";
 import useCart from "../../../Hooks/useCart";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxious from "../../../Hooks/useAxious";
 
 const Cart = () => {
-  const [cart] = useCart();
-  const totalprice = cart.reduce((total, item) => total + item.price, 0);
+  const [cart,refetch] = useCart();
+  const totalprice = cart?.reduce((total, item) => total + item.price, 0) || 0;
+  const axiousSecure=useAxious();
   const handleDelete=(id)=>{
     Swal.fire({
         title: "Are you sure?",
@@ -17,18 +19,25 @@ const Cart = () => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-        //   Swal.fire({
-        //     title: "Deleted!",
-        //     text: "Your file has been deleted.",
-        //     icon: "success"
-        //   });
+          axiousSecure.delete(`/carts/${id}`)
+            .then(res => {
+              if (res.data.deletedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+              }
+            })
+            .catch(err => console.log(err));
         }
       });
   }
   return (
     <div>
       <div className="flex justify-evenly mb-6">
-        <h2 className="text-4xl">Item :{cart.length}</h2>
+        <h2 className="text-4xl">Item :{cart?.length || 0}</h2>
         <h2 className="text-4xl">Tota Price :{totalprice}</h2>
         <button className="btn btn-primary">Pay</button>
       </div>
@@ -48,10 +57,10 @@ const Cart = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {
-                cart.map((item,index) =>  <tr key={item._id}>
+            {cart?.map((item, index) => (
+              <tr key={item._id}>
                 <th>
-                 {index+1}
+                  {index + 1}
                 </th>
                 <td>
                   <div className="flex items-center gap-3">
@@ -63,21 +72,19 @@ const Cart = () => {
                         />
                       </div>
                     </div>
-                   
                   </div>
                 </td>
                 <td>
                   {item.name}
-                 
                 </td>
                 <td>${item.price}</td>
                 <th>
-                  <button onCanPlay={()=>handleDelete(item._id)} className="btn btn-ghost btn-lg">
+                  <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-lg">
                     <FaTrash className="text-red-600"></FaTrash>
                   </button>
                 </th>
-              </tr>)
-            }
+              </tr>
+            ))}
             <tr>
               <th>
                 <label>
