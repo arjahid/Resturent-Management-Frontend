@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { FaAd, FaCalendar, FaHome, FaList, FaShoppingCart } from "react-icons/fa";
+import {
+  FaAd,
+  FaCalendar,
+  FaHome,
+  FaList,
+  FaShoppingCart,
+} from "react-icons/fa";
 
 const Dashboard = () => {
   return (
@@ -22,30 +28,31 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/review">
               <FaAd></FaAd>
-             Add a Review
-              
+              Add a Review
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/cart">
               <FaShoppingCart></FaShoppingCart>
               My Cart
-              
-              
             </NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/bookings">
               <FaList></FaList>
               My Bookings
-             
-              
-              
+            </NavLink>
+          </li>
+          <div className="divider"></div>
+          <li>
+            <NavLink to="/">
+              <FaHome></FaHome>
+               Home
             </NavLink>
           </li>
         </ul>
       </div>
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-8">
         <Outlet></Outlet>
       </div>
     </div>
