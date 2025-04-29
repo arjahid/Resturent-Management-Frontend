@@ -28,7 +28,7 @@ const FoodCard = ({item}) => {
         axiousSecure.post('/carts',cartItem)
        .then(res=>{
         console.log(res.data);
-        if(res.data.insertedId){
+        if (res.data.insertedId) {
           Swal.fire({
             title: "Item added to cart!",
             icon: "success",
@@ -36,14 +36,12 @@ const FoodCard = ({item}) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Go to cart"
-          })
-          refetch()
-          .then((result) => {
+          }).then((result) => {
             if (result.isConfirmed) {
-              // navigate('/dashboard/mycart')
-              // TODO: Add to cart logic here 
+              navigate('/dashboard/cart');
             }
           });
+          refetch();
         }
        })
       }
