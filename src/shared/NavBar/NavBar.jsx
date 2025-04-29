@@ -3,9 +3,12 @@ import { IoFastFoodSharp } from "react-icons/io5";
 import { GiPalmTree } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
-  const {user,logout}=useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext);
+  const [cart]=useCart();
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -14,11 +17,11 @@ const NavBar = () => {
       .catch((error) => {
         console.error("Error logging out:", error);
       });
-  }
+  };
   const links = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/">Home</Link>{" "}
       </li>
       <li>
         <Link to="/order/salad">Order Food</Link>
@@ -32,20 +35,34 @@ const NavBar = () => {
       <li>
         <Link to="/secret">Secret</Link>
       </li>
-      
       <li>
         <a>Our Shop</a>
       </li>
-      {
-        user ? <>
-        <span className="pt-2 ">{ user?.displayName}</span>
-        <button onClick={handleLogout} className="btn btn-ghost">LogOut</button>
-        </> :
+      <li>
+        <Link to="/dashboard/cart">
+          <button className="btn">
+          <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-sm badge-secondary">
         
-        <><li>
-        <Link to="/login">Login</Link>
-      </li> </>
-      }
+               +{cart?.length}
+            </div>
+          </button>
+        </Link>
+      </li>
+      {user ? (
+        <>
+          <button onClick={handleLogout} className="btn btn-ghost">
+            LogOut
+          </button>
+          <span className="pt-2 ">{user?.displayName} </span>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>{" "}
+        </>
+      )}
     </>
   );
   return (

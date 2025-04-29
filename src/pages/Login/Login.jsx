@@ -20,7 +20,7 @@ const Login = () => {
   const from=location.state?.from?.pathname || '/';
 
   const {signIn}=useContext(AuthContext)
-
+ 
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
