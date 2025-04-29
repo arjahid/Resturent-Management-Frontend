@@ -4,9 +4,11 @@ import { GiPalmTree } from "react-icons/gi";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [cart]=useCart();
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -42,7 +44,7 @@ const NavBar = () => {
           <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-sm badge-secondary">
         
-               +99
+               +{cart?.length}
             </div>
           </button>
         </Link>
