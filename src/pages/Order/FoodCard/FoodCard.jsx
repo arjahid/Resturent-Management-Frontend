@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios, { AxiosHeaders } from 'axios';
 import useAxious from '../../../Hooks/useAxious';
+import useCart from '../../../Hooks/useCart';
 
 const FoodCard = ({item}) => {
     const { name, recipe, image, price,_id } = item;
@@ -11,6 +12,7 @@ const FoodCard = ({item}) => {
     const navigate=useNavigate();
     const location=useLocation();
     const axiousSecure=useAxious();
+    const [,refetch]=useCart();
 
     const handleAddtoCart = (food) => {
       if(user && user.email){
@@ -34,7 +36,9 @@ const FoodCard = ({item}) => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Go to cart"
-          }).then((result) => {
+          })
+          refetch()
+          .then((result) => {
             if (result.isConfirmed) {
               // navigate('/dashboard/mycart')
               // TODO: Add to cart logic here 
