@@ -39,7 +39,7 @@ const NavBar = () => {
         <a>Our Shop</a>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/dashboard/cart">
           <button className="btn">
           <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-sm badge-secondary">
