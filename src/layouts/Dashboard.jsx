@@ -3,9 +3,12 @@ import { NavLink, Outlet } from "react-router-dom";
 import {
   FaAd,
   FaCalendar,
+  FaEnvelope,
   FaHome,
   FaList,
+  FaSearch,
   FaShoppingCart,
+  FaVoicemail,
 } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
 
@@ -16,7 +19,7 @@ const Dashboard = () => {
       <div className="w-64 min-h-screen bg-orange-400">
         <ul className="menu">
           <li>
-            <NavLink to="/dashboard/home">
+            <NavLink to="/">
               <FaHome></FaHome>
               User Home
             </NavLink>
@@ -50,6 +53,18 @@ const Dashboard = () => {
             <NavLink to="/">
               <FaHome></FaHome>
                Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/order/contact'>
+              <FaEnvelope></FaEnvelope>
+              contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/order/salad'>
+              <FaSearch></FaSearch>
+             Salad
             </NavLink>
           </li>
         </ul>
