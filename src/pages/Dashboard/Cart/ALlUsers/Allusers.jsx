@@ -94,7 +94,7 @@ const Allusers = () => {
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(user._id)}
+                    onClick={() => handleDelete(user)} // Pass the entire user object
                     className="btn btn-ghost btn-lg"
                   >
                     <FaTrash className="text-red-600"></FaTrash>
