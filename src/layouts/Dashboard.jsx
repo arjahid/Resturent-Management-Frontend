@@ -14,11 +14,12 @@ import {
   FaVoicemail,
 } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
 //  TODO:get isAdmin value from the database
 
-  const isAdmin = true;
+  const [isAdmin] = useAdmin()
     const [cart]=useCart();
   return (
     <div className="flex">
