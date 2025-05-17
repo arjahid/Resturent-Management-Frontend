@@ -11,7 +11,7 @@ import {
   FaShoppingCart,
   FaUser,
   FaUtensils,
-  FaVoicemail,
+  
 } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
 import useAdmin from "../Hooks/useAdmin";

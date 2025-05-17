@@ -24,12 +24,13 @@ const useAxious = () => {
       return response;
     },
     async(error) => {
-      if (error.response && error.response.status === 401) {
-        // Handle unauthorized access
-        console.error("Unauthorized access - redirecting to login");
-        localStorage.removeItem("access-token");
-        await logout(); // Call the logout function to clear user state
-        window.location.href = "/login"; // Redirect to login page
+      const status=error.response?.status;
+      if (status === 401 || status === 403) {
+        await logout(); 
+        
+        // localStorage.removeItem("access-token");
+        
+        window.location.href = "/login";
       }
       return Promise.reject(error);
     }
