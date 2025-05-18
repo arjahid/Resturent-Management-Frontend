@@ -1,25 +1,52 @@
-import React from 'react';
-import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import { useForm } from 'react-hook-form';
-import { FaUtensils } from 'react-icons/fa';
-import useAxiousPublic from '../../../../Hooks/useAxiousPublic';
-const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY
-const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+import React from "react";
+import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
+import { useForm } from "react-hook-form";
+import { FaUtensils } from "react-icons/fa";
+import useAxiousPublic from "../../../../Hooks/useAxiousPublic";
+import useAxious from "../../../../Hooks/useAxious";
+import Swal from "sweetalert2";
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddItem = () => {
   const { register, handleSubmit, reset } = useForm();
-  const axiosPublic=useAxiousPublic();
-  const onSubmit = async(data) => {
+  const axiosPublic = useAxiousPublic();
+  const axiousSecure = useAxious();
+  const onSubmit = async (data) => {
     console.log(data);
-  //  upload image to imgbb
-    const imageFile={
-      image:data.image[0]
+    //  upload image to imgbb
+    const imageFile = {
+      image: data.image[0],
+    };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      // now send data to server
+      const menuItem = {
+        name: data.name,
+        category: data.category,
+        price: parseFloat(data.price),
+        recipe: data.recipe,
+        image: res.data.data.display_url,
+      };
+      const menuRes = await axiousSecure.post("/menu", menuItem);
+      console.log(menuRes.data);
+      reset();
+      if (menuRes.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${data.name} is added successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        
+      }
     }
-  const res=await axiosPublic.post(image_hosting_api,imageFile,{
-    headers:{
-      'content-type':'multipart/form-data'
-    }
-  })
-  console.log(res.data);
+
     // reset();
   };
 
@@ -41,7 +68,10 @@ const AddItem = () => {
           </div>
           <div>
             <label className="block mb-1 font-semibold">Category</label>
-            <select {...register("category", { required: true })} className="select select-bordered w-full">
+            <select
+              {...register("category", { required: true })}
+              className="select select-bordered w-full"
+            >
               <option value="">Select Category</option>
               <option value="salad">Salad</option>
               <option value="pizza">Pizza</option>
@@ -77,7 +107,9 @@ const AddItem = () => {
             />
           </div>
           <div>
-            <button type="submit" className="btn bg-yellow-600">Add Item <FaUtensils></FaUtensils></button>
+            <button type="submit" className="btn bg-yellow-600">
+              Add Item <FaUtensils></FaUtensils>
+            </button>
           </div>
         </form>
       </div>
