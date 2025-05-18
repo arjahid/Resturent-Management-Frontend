@@ -2,13 +2,25 @@ import React from 'react';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
 import { FaUtensils } from 'react-icons/fa';
-
+import useAxiousPublic from '../../../../Hooks/useAxiousPublic';
+const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY
+const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const AddItem = () => {
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = data => {
+  const axiosPublic=useAxiousPublic();
+  const onSubmit = async(data) => {
     console.log(data);
-    // handle file upload and form submission here
-    reset();
+  //  upload image to imgbb
+    const imageFile={
+      image:data.image[0]
+    }
+  const res=await axiosPublic.post(image_hosting_api,imageFile,{
+    headers:{
+      'content-type':'multipart/form-data'
+    }
+  })
+  console.log(res.data);
+    // reset();
   };
 
   return (
