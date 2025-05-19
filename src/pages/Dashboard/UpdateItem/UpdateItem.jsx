@@ -1,16 +1,19 @@
 import React from "react";
-import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa";
-import useAxiousPublic from "../../../../Hooks/useAxiousPublic";
-import useAxious from "../../../../Hooks/useAxious";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiousPublic from "../../../Hooks/useAxiousPublic";
+import useAxious from "../../../Hooks/useAxious";
+import { useForm } from "react-hook-form";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-const AddItem = () => {
+
+const UpdateItem = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiousPublic();
   const axiousSecure = useAxious();
+  const { name, category, recipe, price,_id } = useLoaderData();
+
   const onSubmit = async (data) => {
     console.log(data);
     //  upload image to imgbb
@@ -31,28 +34,28 @@ const AddItem = () => {
         recipe: data.recipe,
         image: res.data.data.display_url,
       };
-      const menuRes = await axiousSecure.post("/menu", menuItem);
-      console.log(menuRes.data);
+      const menuRes = await axiousSecure.patch(`/menu/${_id}`, menuItem);
+
       reset();
-      if (menuRes.data.insertedId) {
+      if (menuRes.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${data.name} is added successfully`,
+          title: `${data.name} is updated successfully`,
           showConfirmButton: false,
           timer: 1500,
         });
-
-        
       }
     }
 
     // reset();
   };
-
   return (
     <div>
-      <SectionTitle heading="add an item" subHeading="Whats new"></SectionTitle>
+      <SectionTitle
+        heading="Update an Item"
+        subHeading="Refresh Info"
+      ></SectionTitle>
       <div>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -61,6 +64,7 @@ const AddItem = () => {
           <div>
             <label className="block mb-1 font-semibold">Recipe Name</label>
             <input
+              defaultValue={name}
               {...register("name", { required: true })}
               className="input input-bordered w-full"
               placeholder="Recipe Name"
@@ -69,6 +73,7 @@ const AddItem = () => {
           <div>
             <label className="block mb-1 font-semibold">Category</label>
             <select
+              defaultValue={category}
               {...register("category", { required: true })}
               className="select select-bordered w-full"
             >
@@ -83,6 +88,7 @@ const AddItem = () => {
           <div>
             <label className="block mb-1 font-semibold">Price</label>
             <input
+              defaultValue={price}
               type="number"
               step="0.01"
               {...register("price", { required: true })}
@@ -93,6 +99,7 @@ const AddItem = () => {
           <div>
             <label className="block mb-1 font-semibold">Recipe Details</label>
             <textarea
+              defaultValue={recipe}
               {...register("recipe", { required: true })}
               className="textarea textarea-bordered w-full"
               placeholder="Recipe Details"
@@ -102,13 +109,13 @@ const AddItem = () => {
             <label className="block mb-1 font-semibold">Choose File</label>
             <input
               type="file"
-              {...register("image", { required: true })}
+              {...register("image", )}
               className="file-input file-input-bordered w-full"
             />
           </div>
           <div>
             <button type="submit" className="btn bg-yellow-600">
-              Add Item <FaUtensils></FaUtensils>
+              Update Menu
             </button>
           </div>
         </form>
@@ -117,4 +124,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default UpdateItem;

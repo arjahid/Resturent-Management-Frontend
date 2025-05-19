@@ -55,15 +55,15 @@ const Allusers = () => {
     });
   };
   return (
-    <div>
+    <div className="px-2 sm:px-4 md:px-8">
       <div>
-        <div className="flex justify-evenly my-4">
-          <h2 className="text-3xl">All users</h2>
-          <h2 className="text-3xl">Total users: {users.length}</h2>
+        <div className="flex flex-col md:flex-row md:justify-evenly my-4 gap-2 md:gap-0">
+          <h2 className="text-2xl md:text-3xl">All users</h2>
+          <h2 className="text-2xl md:text-3xl">Total users: {users.length}</h2>
         </div>
       </div>
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-        <table className="table">
+        <table className="table w-full min-w-[600px]">
           {/* head */}
           <thead>
             <tr>
@@ -78,24 +78,24 @@ const Allusers = () => {
             {users.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
+                <td className="break-all">{user.name}</td>
+                <td className="break-all">{user.email}</td>
                 <td>
                   {user.role === "admin" ? (
                     "admin"
                   ) : (
                     <button
-                      onClick={() => handleMakeAdmin(user)} // Pass the entire user object
-                      className="btn bg-orange-500 btn-lg"
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn bg-orange-500 btn-sm md:btn-lg"
                     >
-                      <FaUser className="text-white text-2xl"></FaUser>
+                      <FaUser className="text-white text-xl md:text-2xl"></FaUser>
                     </button>
                   )}
                 </td>
                 <td>
                   <button
-                    onClick={() => handleDelete(user)} // Pass the entire user object
-                    className="btn btn-ghost btn-lg"
+                    onClick={() => handleDelete(user)}
+                    className="btn btn-ghost btn-sm md:btn-lg"
                   >
                     <FaTrash className="text-red-600"></FaTrash>
                   </button>
