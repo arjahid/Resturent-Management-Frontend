@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 import useAxious from './useAxious';
 
 const useAdmin = () => {
-    const {user}=useAuth()
+    const {user,loading}=useAuth()
     const axiousSecure=useAxious();
     const {data:isAdmin,isPending:isAdminLoading}=useQuery({
         queryKey:['isAdmin',user?.email],
