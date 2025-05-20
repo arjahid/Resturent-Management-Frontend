@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxious from "../../../Hooks/useAxious";
-import { FaDollarSign } from "react-icons/fa";
+import { FaBook, FaDollarSign, FaUser } from "react-icons/fa";
 
 const AdminHome = () => {
   const { user } = useAuth();
@@ -33,22 +33,18 @@ const AdminHome = () => {
 
         <div className="stat">
           <div className="stat-figure text-secondary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="inline-block h-8 w-8 stroke-current"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-              ></path>
-            </svg>
+           <FaUser className="text-3xl"></FaUser>?
           </div>
-          <div className="stat-title">New Users</div>
-          <div className="stat-value">4,200</div>
+          <div className="stat-title">Users</div>
+          <div className="stat-value">{stats.users}</div>
+          <div className="stat-desc">↗︎ 400 (22%)</div>
+        </div>
+        <div className="stat">
+          <div className="stat-figure text-secondary">
+           <FaBook className="text-3xl"></FaBook>
+          </div>
+          <div className="stat-title">MenuItems</div>
+          <div className="stat-value">{stats.menuItem}</div>
           <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
@@ -68,8 +64,8 @@ const AdminHome = () => {
               ></path>
             </svg>
           </div>
-          <div className="stat-title">New Registers</div>
-          <div className="stat-value">1,200</div>
+          <div className="stat-title">Orders</div>
+          <div className="stat-value">{stats.orders}</div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
