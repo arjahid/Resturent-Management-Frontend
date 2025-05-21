@@ -47,8 +47,8 @@ const ManageItem = () => {
         subHeading="Hurry Up"
       ></SectionTitle>
       <div>
-        <div className="overflow-x-auto">
-          <table className="table w-full">
+        <div className="overflow-x-auto w-full">
+          <table className="table w-full min-w-[600px]">
             {/* head */}
             <thead>
               <tr>
@@ -64,7 +64,6 @@ const ManageItem = () => {
               {menu.map((item, index) => (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
-
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
@@ -72,23 +71,25 @@ const ManageItem = () => {
                           <img
                             src={item.image}
                             alt="Avatar Tailwind CSS Component"
+                            className="object-cover w-full h-full"
                           />
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td>{item.name}</td>
-                  <td className="">${item.price}</td>
+                  <td className="break-all">{item.name}</td>
+                  <td className="break-all">${item.price}</td>
                   <td>
-                   <Link to={`/dashboard/updateItem/${item._id}`}>
-                    <button className="btn btn-ghost btn-sm md:btn-lg">
-                      <FaEdit className="text-white"></FaEdit>
-                    </button></Link>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button className="btn btn-ghost btn-xs sm:btn-sm md:btn-md lg:btn-lg">
+                        <FaEdit className="text-white"></FaEdit>
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button
                       onClick={() => handleDelete(item)}
-                      className="btn btn-ghost btn-sm md:btn-lg"
+                      className="btn btn-ghost btn-xs sm:btn-sm md:btn-md lg:btn-lg"
                     >
                       <FaTrash className="text-red-600"></FaTrash>
                     </button>
