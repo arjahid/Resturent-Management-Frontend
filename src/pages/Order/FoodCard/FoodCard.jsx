@@ -35,7 +35,11 @@ const FoodCard = ({item}) => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Go to cart"
+            confirmButtonText: "Go to cart",
+            width: '90%', // or a specific px value, e.g., '400px'
+            customClass: {
+              popup: 'max-w-xs sm:max-w-sm md:max-w-md', // Tailwind classes if using Tailwind
+            },
           }).then((result) => {
             if (result.isConfirmed) {
               navigate('/dashboard/cart');
@@ -63,23 +67,28 @@ const FoodCard = ({item}) => {
       }
     }
     return (
-        <div className="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src={image}
-      alt="Shoes" />
-  </figure>
-  <p className='bg-slate-900 text-white absolute right-0 mr-4 mt-2 px-4 rounded'>{price}</p>
-  <div className="card-body text-center flex flex-col items-center justify-center">
-    <h2 className="card-title">{name}</h2>
-    <p className=''>${recipe}</p>
-    <div className="card-actions flex flex-col items-center">
-      <button
-      onClick={()=>handleAddtoCart(item)}
-       className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4 text-black hover:bg-black hover:text-white">Add to cart</button>
-    </div>
-  </div>
-</div>
+      <div className="card bg-base-100 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg shadow-sm mx-auto relative">
+        <figure className="h-48 sm:h-56 md:h-64 w-full overflow-hidden">
+          <img
+            src={image}
+            alt={name}
+            className="object-cover w-full h-full"
+          />
+        </figure>
+        <p className="bg-slate-900 text-white absolute right-0 top-0 mr-4 mt-2 px-4 rounded">${price}</p>
+        <div className="card-body text-center flex flex-col items-center justify-center">
+          <h2 className="card-title text-lg md:text-xl">{name}</h2>
+          <p className="mb-2 text-sm md:text-base">${recipe}</p>
+          <div className="card-actions flex flex-col items-center w-full">
+            <button
+              onClick={() => handleAddtoCart(item)}
+              className="btn btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4 text-black hover:bg-black hover:text-white w-full"
+            >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
     );
 };
 
