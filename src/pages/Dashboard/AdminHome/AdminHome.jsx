@@ -7,13 +7,20 @@ const AdminHome = () => {
   const { user } = useAuth();
   const axiousSecure = useAxious();
 
-  const { data: stats } = useQuery({
+  const { data: stats=[] } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiousSecure.get("/admin-stats");
       return res.data;
     },
   });
+  const {data:chartData=[]}=useQuery({
+    queryKey:['orders-stats'],
+    queryFn:async ()=>{
+        const res=await axiousSecure.get('/orders-stats')
+        return res.data;
+    }
+  })
 
   return (
     <div>
@@ -47,6 +54,8 @@ const AdminHome = () => {
           <div className="stat-value">{stats.menuItem}</div>
           <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
+
+        
 
         <div className="stat">
           <div className="stat-figure text-secondary">
