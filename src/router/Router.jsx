@@ -50,7 +50,8 @@ export const router = createBrowserRouter([
         {
           path:'secret',
           element:<PrivateRoute><Secret></Secret></PrivateRoute>
-        }
+        },
+        
         
       ]
     },
@@ -97,7 +98,7 @@ export const router = createBrowserRouter([
         {
           path:'updateItem/:id',
           element:<AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-          loader:({params})=>fetch(`http://localhost:3000/menu/${params.id}`)
+          loader:({params})=>fetch(`https://resturent-management-server-eight.vercel.app/menu/${params.id}`)
         }
        
       ]

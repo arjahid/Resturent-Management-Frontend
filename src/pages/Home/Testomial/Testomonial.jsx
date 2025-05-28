@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 const Testomonial = () => {
   const [reviews, setReviews] = useState([]);
   useState(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("https://resturent-management-server-eight.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

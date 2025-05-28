@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuth from "./useAuth";
 
 const axiousSecure = axios.create({
-  baseURL: "http://localhost:3000", // Replace with your backend base URL
+  baseURL: "https://resturent-management-server-eight.vercel.app", // Replace with your backend base URL
 });
 
 const useAxious = () => {

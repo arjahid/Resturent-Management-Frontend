@@ -61,22 +61,25 @@ const AuthProvider = ({ children }) => {
         axiosPublic
           .post("/jwt", userInfo)
           .then((res) => {
-            if (res.data.token) {
+            if (res.data?.token) {
               localStorage.setItem("access-token", res.data.token);
-              setLoading(false);
+            } else {
+              localStorage.removeItem("access-token");
             }
+            setLoading(false);
           })
           .catch((err) => {
             console.error("Error fetching JWT token:", err);
-            localStorage.removeItem("access-token"); // Ensure token is cleared on error
+            localStorage.removeItem("access-token");
+            setLoading(false);
           });
       } else {
         localStorage.removeItem("access-token");
+        setLoading(false);
       }
-      
     });
     return () => {
-      unscribe(); // Clean up the subscription on unmount
+      unscribe();
     };
   }, [axiosPublic]); // Add axiosPublic to the dependency array
   return (

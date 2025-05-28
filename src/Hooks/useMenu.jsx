@@ -9,7 +9,7 @@ const useMenu =()=>{
     //   const [loading,setLoading]=useState(true);
     
     //     useEffect(() => {
-    //         fetch('http://localhost:3000/menu')
+    //         fetch('https://resturent-management-server-eight.vercel.app/menu')
     //         .then(res => res.json())
     //         .then(data => {
     //             // const populaarItem = data.filter(item => item.category === 'popular');
